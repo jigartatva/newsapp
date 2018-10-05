@@ -8,6 +8,9 @@ import { ICONS } from '../../shared/constants/common';
 
 const { ic_check_box_outline_blank, ic_check_box } = ICONS;
 
+/**
+ * ListItems componet class
+ */
 export default class ListItems extends Component {
 
   static propTypes = {
@@ -19,6 +22,9 @@ export default class ListItems extends Component {
     isAccessible: PropTypes.bool
   }
 
+  /**
+    * Initiazlie defalt props 
+  */
   static defaultProps = {
     isCheckeboxEnabled: true,
     isDisabled: false,

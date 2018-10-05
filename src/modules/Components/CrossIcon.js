@@ -3,11 +3,17 @@ import { TouchableOpacity, Image, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { COLORS } from '../../shared/constants/common';
 
+/**
+ * CrossIcon componet class
+ */
 export default class CrossIcon extends Component {
   static propTypes = {
     onPress: PropTypes.func,
   }
-  // initialize default props
+  
+  /**
+    * Initialize default props 
+  */
   static defaultProps = {
     onPress: () => { }
   }

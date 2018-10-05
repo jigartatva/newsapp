@@ -17,6 +17,9 @@ import { ICONS, COLORS } from '../../shared/constants/common';
 
 const { cross_mark_icon_without_cover } = ICONS;
 
+/**
+ * ModalBox componet class
+ */
 class ModalBox extends Component {
   static propTypes = {
     isDisabled: PropTypes.bool,
@@ -31,6 +34,9 @@ class ModalBox extends Component {
     modalImage: PropTypes.string
   };
 
+  /**
+    * Initialize default props 
+  */
   static defaultProps = {
     isDisabled: false,
     isOpen: false,
@@ -47,6 +53,10 @@ class ModalBox extends Component {
     this.addFilterItem = this.addFilterItem.bind(this);
   }
 
+  /**
+    * Get list items 
+    * @return clone with rows
+  */
   getListItems() {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
@@ -62,6 +72,10 @@ class ModalBox extends Component {
     }
   }
 
+  /**
+    * Add filter item 
+    * @param dataItem 
+  */
   addFilterItem(dataItem) {
     if (this.state.selectedIds.includes(dataItem.id)) {
       var data = this.state.selectedIds;

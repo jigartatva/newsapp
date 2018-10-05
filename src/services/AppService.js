@@ -3,12 +3,19 @@ const SET_LOADER = 'SET_LOADER';
 /* Set loader case*/
 export const setLoader = (value) => ({ type: SET_LOADER, payload: value });
 
-/* Initial state */
+/**
+  * Initial state 
+*/
 const initialState = Map({
   loading: false
 });
 
-/* News reducer */
+/**
+  * News reducer 
+  * @param state / initialState 
+  * @param action
+  * @return updated state
+*/
 export default function appReducer(state = initialState, action) {
   switch (action.type) {
     case SET_LOADER:

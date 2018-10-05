@@ -1,3 +1,6 @@
+/**
+ * Common styles for the whole app
+ */
 import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   navigationHeader: {

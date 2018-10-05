@@ -9,6 +9,10 @@ import rootSaga from './sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
+/**
+  * To configure store
+  * @param store 
+*/
 export default function configureStore() {
     // define store middlewares as an array
     const middlewares = [

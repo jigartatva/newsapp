@@ -56,6 +56,9 @@ const styles = StyleSheet.create({
 const ANIMATION = ['none', 'slide', 'fade'];
 const SIZES = ['small', 'normal', 'large'];
 
+/**
+ * Spinner componet class
+ */
 export default class Spinner extends Component {
 
   static propTypes = {
@@ -68,6 +71,9 @@ export default class Spinner extends Component {
     overlayColor: PropTypes.string
   };
 
+  /**
+    * Initialize default props 
+  */
   static defaultProps = {
     visible: false,
     cancelable: false,
@@ -86,21 +92,35 @@ export default class Spinner extends Component {
     };
   }
 
+  /**
+    * DEFAULT : component will recieve props 
+    * @param nextProps 
+  */
   componentWillReceiveProps(nextProps) {
     const { visible, textContent } = nextProps;
     this.setState({ visible, textContent });
   }
 
+  /**
+    * when close 
+  */
   close() {
     this.setState({ visible: false });
   }
 
+  /**
+    * when request to close 
+  */
   _handleOnRequestClose() {
     if (this.props.cancelable) {
       this.close();
     }
   }
 
+  /**
+    * Render defualt content 
+    * @return View component
+  */
   _renderDefaultContent() {
     return (
       <View style={styles.background}>
@@ -122,6 +142,10 @@ export default class Spinner extends Component {
     );
   }
 
+  /**
+    * Render spinner 
+    * @return Modal component
+  */
   _renderSpinner() {
     const { visible } = this.state;
 

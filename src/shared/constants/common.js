@@ -1,3 +1,6 @@
+/**
+ * Common icons used in whole app
+ */
 export const ICONS = {
   filterIcon: require('../../../assets/filter.png'),
   seachIcon: require('../../../assets/search.png'),
@@ -9,6 +12,9 @@ export const ICONS = {
   left_arrow_icon: require('../../../assets/left-arrow.png')
 }
 
+/**
+ * Common color used in whole app
+ */
 export const COLORS = {
   colorWhite:'#ffffff',
   colorBlack:'#000000',

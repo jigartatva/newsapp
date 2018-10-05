@@ -4,6 +4,9 @@ import { View, Text, StyleSheet } from 'react-native';
 import commonStyle from "../../shared/styles/commonStyle";
 import { COLORS } from '../../shared/constants/common';
 
+/**
+ * News Deatil componet class
+ */
 class NewsDetailView extends Component {
   static displayName = "News Detail";
   static navigationOptions = ({ navigation }) => ({

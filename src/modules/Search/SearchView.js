@@ -26,8 +26,11 @@ const ITEMS_PER_PAGE = 10;
 
 const { left_arrow_icon, filterIcon } = ICONS;
 
+/**
+ * Search view componet class
+ */
 class SearchView extends Component {
-  static displayName = "SearchView";
+
   constructor(props) {
     super(props);
     this.state = {
@@ -40,6 +43,10 @@ class SearchView extends Component {
     this.renderLoadMoreItems = this.renderLoadMoreItems.bind(this);
   }
 
+  /**
+    * DEFAULT : when component will receive props 
+    * @param nextProps 
+  */
   componentWillReceiveProps(nextProps) {
     if (nextProps.newsList && nextProps.newsList !== this.props.newsList && nextProps.newsList !== "" && nextProps.newsList !== 'undefined') {
       if (CommonFunc.isJson(nextProps.newsList)) {
@@ -49,6 +56,9 @@ class SearchView extends Component {
     }
   }
 
+  /**
+    * Render load more items 
+  */
   renderLoadMoreItems() {
     let newsProps = JSON.parse(this.props.newsList);
     let maxItems = newsProps.totalResults;
@@ -61,6 +71,12 @@ class SearchView extends Component {
     }
   }
 
+  /**
+    * Render news items 
+    * @param item 
+    * @param index 
+    * @return ImageBackground component
+  */
   renderNewsItem = (item, index) => {
     let title = item.title.substring(0, 50) + "...";
     let image = item.urlToImage;
@@ -76,11 +92,19 @@ class SearchView extends Component {
     );
   }
 
+  /**
+    * when search begin 
+    * @param searchIdString 
+  */
   beginSearch(searchIdString) {
     this.setState({ isModalPopupOpen: false, currentPageIndex: 1, newsList: [], searchIdString });
     this.props.dispatch(NewsActions.getNewsListBySearch(this.state.searchby, 1, ITEMS_PER_PAGE, searchIdString));
   }
 
+  /**
+    * News search by passing items (searchby) 
+    * @param searchby 
+  */
   newsSearchBy = (searchby) => {
     if (this.state.searchby !== "" && this.state.searchby.length >= 2) {
       this.setState({ currentPageIndex: 1, newsList: [] });

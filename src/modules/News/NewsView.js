@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
+  TextInput,
   ImageBackground,
   TouchableOpacity,
   Image,
@@ -23,6 +24,9 @@ import * as CommonFunc from '../../shared/utils/commonFunc';
 const { filterIcon, seachIcon } = ICONS;
 const ITEMS_PER_PAGE = 10;
 
+/**
+ * Newsview componet class
+ */
 class NewsView extends Component {
   static displayName = "NewsView";
 
@@ -30,6 +34,11 @@ class NewsView extends Component {
     onPress: PropTypes.func,
   }
 
+  /**
+    * Navigation options 
+    * @param navigation 
+    * @return View component
+  */
   static navigationOptions = (navigation) => ({
     title: "Top Headlines",
     tabBarLabel: null,
@@ -57,7 +66,9 @@ class NewsView extends Component {
     )
   });
 
-  // initialize default props
+  /**
+    * Initialize default props 
+  */
   static defaultProps = {
   }
 
@@ -74,11 +85,9 @@ class NewsView extends Component {
     this.onModalPopupActionHandler = this.onModalPopupActionHandler.bind(this);
   }
 
-
-  componentWillMount() {
-
-  }
-
+  /**
+    * DEFULT : when component mount to DOM 
+  */
   componentDidMount() {
     const { currentPageIndex } = this.state;
     this.props.dispatch(NewsActions.getNewsList(currentPageIndex, ITEMS_PER_PAGE, this.state.searchIdString));
@@ -89,6 +98,10 @@ class NewsView extends Component {
     });
   }
 
+  /**
+    * DEFAULT : when component receive props 
+    * @param nextProps 
+  */
   componentWillReceiveProps(nextProps) {
     if (nextProps.newsList && nextProps.newsList !== this.props.newsList && nextProps.newsList !== "" && nextProps.newsList !== 'undefined') {
       if (CommonFunc.isJson(nextProps.newsList)) {
@@ -98,6 +111,9 @@ class NewsView extends Component {
     }
   }
 
+  /**
+    * Render load more items 
+  */
   renderLoadMoreItems() {
     let newsProps = JSON.parse(this.props.newsList);
     let maxItems = newsProps.totalResults;
@@ -107,6 +123,12 @@ class NewsView extends Component {
     }
   }
 
+  /**
+    * Render news item 
+    * @param item
+    * @param index
+    * @return Image background component
+  */
   renderNewsItem = (item, index) => {
     let title = item.title.substring(0, 50) + "...";
     let image = item.urlToImage;
@@ -122,10 +144,17 @@ class NewsView extends Component {
     );
   }
 
+  /**
+    * when modal popup action fired 
+  */
   onModalPopupActionHandler() {
     this.setState({ isModalPopupOpen: true });
   }
 
+  /**
+    * when search begin 
+    * @param searchIdString 
+  */
   beginSearch(searchIdString) {
     this.setState({ isModalPopupOpen: false, currentPageIndex: 1, newsList: [], searchIdString });
     this.props.dispatch(NewsActions.getNewsList(1, ITEMS_PER_PAGE, searchIdString));
