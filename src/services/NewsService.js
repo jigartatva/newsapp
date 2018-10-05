@@ -46,13 +46,19 @@ export const getNewsSourcesFailure = (value) => ({
   payload: JSON.stringify(value)
 });
 
-/* Initial state */
+/**
+  * Initial state 
+*/
 const initialState = Map({
   newsList: "",
   newsSources: ""
 });
 
-/* News reducer */
+/**
+  * News reducer 
+  * @param state / initialState 
+  * @return action
+*/
 export default function newsReducer(state = initialState, action) {
   switch (action.type) {
     case GET_NEWSLIST:

@@ -13,7 +13,9 @@ import { ICONS } from '../../shared/constants/common';
 
 const { indeterminate_check_box, ic_check_box, ic_check_box_outline_blank } = ICONS;
 
-
+/**
+ * Checkbox componet class
+ */
 export default class CheckBox extends Component {
   constructor(props) {
     super(props);
@@ -37,6 +39,10 @@ export default class CheckBox extends Component {
     uncheckedCheckBoxColor: PropTypes.string,
     disabled: PropTypes.bool,
   }
+
+  /**
+    * Initialize default props 
+  */
   static defaultProps = {
     isChecked: false,
     isIndeterminate: false,
@@ -48,6 +54,10 @@ export default class CheckBox extends Component {
     this.props.onClick();
   }
 
+  /**
+   * Render Left part 
+   * @return Text component
+  */
   _renderLeft() {
     if (this.props.leftTextView) return this.props.leftTextView;
     if (!this.props.leftText) return null;
@@ -56,6 +66,10 @@ export default class CheckBox extends Component {
     );
   }
 
+  /**
+    * Render right part 
+    * @return Text component
+  */
   _renderRight() {
     if (this.props.rightTextView) return this.props.rightTextView;
     if (!this.props.rightText) return null;
@@ -64,6 +78,10 @@ export default class CheckBox extends Component {
     );
   }
 
+  /**
+    * Render Image 
+    * @return image
+  */
   _renderImage() {
     if (this.props.isIndeterminate) {
       return this.props.indeterminateImage ? this.props.indeterminateImage : this.genCheckedImage();
@@ -75,18 +93,34 @@ export default class CheckBox extends Component {
     }
   }
 
+  /**
+    * Get checked checkbox color 
+    * @return checked checkbox color
+  */
   _getCheckedCheckBoxColor() {
     return this.props.checkedCheckBoxColor ? this.props.checkedCheckBoxColor : this.props.checkBoxColor
   }
 
+  /**
+    * Get unchecked checkbox color 
+    * @return uncheckd checkbox color
+  */
   _getUncheckedCheckBoxColor() {
     return this.props.uncheckedCheckBoxColor ? this.props.uncheckedCheckBoxColor : this.props.checkBoxColor
   }
 
+  /**
+    * Get tint color 
+    * @return checked checkbox color
+  */
   _getTintColor() {
     return this.props.isChecked ? this._getCheckedCheckBoxColor() : this._getUncheckedCheckBoxColor()
   }
 
+  /**
+    * Generate checked image 
+    * @return Image component
+  */
   genCheckedImage() {
     let source;
     if (this.props.isIndeterminate) {

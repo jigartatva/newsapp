@@ -8,6 +8,9 @@ import { ICONS } from '../../shared/constants/common';
 
 const { ic_check_box_outline_blank, ic_check_box } = ICONS;
 
+/**
+ * ListItems componet class
+ */
 export default class ListItems extends Component {
 
   static propTypes = {
@@ -19,6 +22,9 @@ export default class ListItems extends Component {
     isAccessible: PropTypes.bool
   }
 
+  /**
+    * Initiazlie defalt props 
+  */
   static defaultProps = {
     isCheckeboxEnabled: true,
     isDisabled: false,
@@ -36,12 +42,12 @@ export default class ListItems extends Component {
   render() {
     const { titleText, name, isCheckeboxEnabled, isAccessible, isChecked, onCheck, customContainerCSS, isAddedInPlayList, isDisabled } = this.props;
     return (
-      <View style={[styles.container, { paddingLeft: 0.1, paddingRight: 0.1 }, isAccessible === false ? { opacity: 0.5 } : {}, customContainerCSS]} pointerEvents={isAccessible ? 'auto' : 'none'} >
-        <View style={[styles.soundTextView]}>
+      <View style={[styles.container, customContainerCSS]} pointerEvents={'auto'} >
+        <View style={[styles.categoryTextView]}>
           {!!this.props.sources && <Text style={[styles.description]}> {this.props.sources.name} </Text>}
         </View>
         <View style={[styles.soundCheckboxView]}>
-          {!!isCheckeboxEnabled && <TouchableOpacity style={{ height: 40, width: 40, justifyContent: 'center', alignItems: 'center' }}
+          {!!isCheckeboxEnabled && <TouchableOpacity style={[styles.checkBoxTouch]}
             onPress={() => { onCheck(this.props.sources) }}
           >
             <Image source={isChecked ? ic_check_box : ic_check_box_outline_blank} />
@@ -58,32 +64,25 @@ const styles = StyleSheet.create({
     padding: 10,
     height: 85,
     width: '100%',
-  },
-  titleText: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    paddingLeft: 0.1,
+    paddingRight: 0.1
   },
   description: {
     fontSize: 16,
     fontWeight: 'normal',
   },
-  soundImageView: {
-    width: '13%',
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    height: '100%'
-  },
-  soundTextView: {
+  categoryTextView: {
     width: '80%',
     padding: 15,
     paddingLeft: 1,
     height: '100%',
     justifyContent: 'center'
   },
-  soundPlayListAddedImageView: {
-    width: '10%',
+  checkBoxTouch: {
+    height: 40,
+    width: 40,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   soundCheckboxView: {
     width: '20%',

@@ -13,15 +13,17 @@ import ListItems from './ListItems';
 
 import * as commonFunctions from '../../shared/utils/commonFunc';
 
-import { ICONS } from '../../shared/constants/common';
+import { ICONS, COLORS } from '../../shared/constants/common';
 
 const { cross_mark_icon_without_cover } = ICONS;
 
+/**
+ * ModalBox componet class
+ */
 class ModalBox extends Component {
   static propTypes = {
     isDisabled: PropTypes.bool,
     isOpen: PropTypes.bool,
-    description: PropTypes.string,
     headingText: PropTypes.string,
     btnOkText: PropTypes.string,
     btnCancelText: PropTypes.string,
@@ -32,6 +34,9 @@ class ModalBox extends Component {
     modalImage: PropTypes.string
   };
 
+  /**
+    * Initialize default props 
+  */
   static defaultProps = {
     isDisabled: false,
     isOpen: false,
@@ -48,6 +53,10 @@ class ModalBox extends Component {
     this.addFilterItem = this.addFilterItem.bind(this);
   }
 
+  /**
+    * Get list items 
+    * @return clone with rows
+  */
   getListItems() {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
@@ -63,6 +72,10 @@ class ModalBox extends Component {
     }
   }
 
+  /**
+    * Add filter item 
+    * @param dataItem 
+  */
   addFilterItem(dataItem) {
     if (this.state.selectedIds.includes(dataItem.id)) {
       var data = this.state.selectedIds;
@@ -77,7 +90,6 @@ class ModalBox extends Component {
   }
 
   render() {
-    const { customDescStyle, textCustomDescStyle } = this.props;
     const { selectedIds } = this.state;
     return (
       <Modal
@@ -86,20 +98,20 @@ class ModalBox extends Component {
         visible={this.props.isOpen}
         onRequestClose={() => { console.log('') }}
       >
-        <View style={[{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)' }]}>
-          <View style={[styles.modal, { justifyContent: 'space-between' }]}>
-            <View style={{ justifyContent: 'center', width: '100%', height: 50, alignItems: 'flex-end' }}>
+        <View style={[styles.modalContainer]}>
+          <View style={[styles.modal]}>
+            <View style={[styles.imageWrapper]}>
               <TouchableOpacity
-                style={{ width: 50, height: '100%', justifyContent: 'center', alignItems: 'center' }}
+                style={[styles.crossImageTouch]}
                 onPress={this.props.actionCancel}
               >
                 <Image
-                  style={{ width: 24, height: 24 }}
+                  style={[styles.crossImage]}
                   source={cross_mark_icon_without_cover}
                 />
               </TouchableOpacity>
             </View>
-            <View style={{ margin: 5, backgroundColor: '#ededed', height: '85%' }}>
+            <View style={[styles.listWrapper]}>
               <ListView
                 dataSource={this.getListItems()}
                 renderRow={(rowData, rowID) => {
@@ -113,14 +125,14 @@ class ModalBox extends Component {
                 }}
               />
             </View>
-            <View style={{ justifyContent: 'center', width: '100%', height: 50, alignItems: 'center' }}>
+            <View style={[styles.imageWrapper]}>
               <TouchableOpacity
-                style={{ width: '95%', height: '100%', justifyContent: 'center', alignItems: 'center', backgroundColor: 'gray' }}
+                style={[styles.searchTouch]}
                 onPress={() => {
                   this.props.doSearch(this.state.searchIdString)
                 }}
               >
-                <Text style={{ color: 'white' }}>Search</Text>
+                <Text style={styles.searchText}>Search</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -131,29 +143,37 @@ class ModalBox extends Component {
 }
 
 const styles = StyleSheet.create({
-  okCancelBtn: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingLeft: '5%',
-    marginTop: '4%',
-    marginBottom: '4%',
-    paddingRight: '5%'
+  modalContainer: {
+    flex: 1,
+    backgroundColor: COLORS.colorMoreTransparentWhite
   },
-  bgbutton: {
+  imageWrapper: {
+    justifyContent: 'center',
+    width: '100%',
+    height: 50,
+    alignItems: 'flex-end'
+  },
+  crossImage: {
+    width: 24,
+    height: 24
+  },
+  crossImageTouch: {
+    width: 50,
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  searchTouch: {
+    width: '95%',
+    height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    height: commonFunctions.screenHeight(8, 0),
-    width: commonFunctions.screenWidth(62, 0),
-    borderRadius: 8
+    backgroundColor: COLORS.colorGray
   },
-  cancelModal: {
-    paddingLeft: '17%',
-    paddingRight: '17%'
-  },
-  descriptionStyle: {
-    fontSize: 18,
-    color: '#000000',
-    textAlign: 'center'
+  listWrapper: {
+    margin: 5,
+    backgroundColor: COLORS.colorMoreCreamWhite,
+    height: '85%'
   },
   modal: {
     height: '90%',
@@ -163,24 +183,13 @@ const styles = StyleSheet.create({
     zIndex: 9,
     justifyContent: 'center',
     alignSelf: 'center',
-    backgroundColor: '#ffffff',
+    backgroundColor: COLORS.colorWhite,
     marginTop: '10%',
-    padding: 5
+    padding: 5,
+    justifyContent: 'space-between'
   },
-  modalHeader: {
-    height: 45,
-    width: '100%',
-    justifyContent: 'flex-start'
-  },
-  buttonText: {
-    fontSize: 18,
-    color: 'white',
-    textAlign: 'center',
-    justifyContent: 'center'
-  },
-  buttonStyle: {
-    height: 50,
-    width: '47%'
+  searchText: {
+    color: COLORS.colorWhite
   }
 });
 module.exports = ModalBox;

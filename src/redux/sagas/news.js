@@ -11,19 +11,31 @@ const deviceCountry = DeviceInfo.getDeviceCountry();
 const API_ROOT = apiEndpoints.api;
 const API_KEY = apiEndpoints.key;
 
+/**
+  * Get news list watcher 
+*/
 function* getNewsListWatcher() {
   yield takeEvery(NewsActions.GET_NEWSLIST, getNewsListHandler);
 }
 
+/**
+  * Get news list by search watcher 
+*/
 function* getNewsListBySearchWatcher() {
   yield takeLatest(NewsActions.GET_NEWSLIST_SEARCH, getNewsListBySearchHandler);
 }
 
+/**
+  * Get news source watcher 
+*/
 function* getNewsSourcesWatcher() {
   yield takeEvery(NewsActions.GET_NEWS_SOURCES, getNewsSourcesHandler);
 }
 
-// To Get News List
+/**
+  * Get news list 
+  * @param value 
+*/
 function* getNewsListHandler(value) {
   yield put(AppActions.setLoader(true));
   var searchParamas = value.payload;
@@ -45,7 +57,10 @@ function* getNewsListHandler(value) {
   yield put(AppActions.setLoader(false));
 }
 
-// To Get All News List By Search Keyword
+/**
+  * To Get All News List By Search Keyword 
+  * @param value 
+*/
 function* getNewsListBySearchHandler(value) {
   yield put(AppActions.setLoader(true));
   var searchParamas = value.payload;
@@ -68,6 +83,9 @@ function* getNewsListBySearchHandler(value) {
   yield put(AppActions.setLoader(false));
 }
 
+/**
+  * To get news source handler
+*/
 function* getNewsSourcesHandler() {
   yield put(AppActions.setLoader(true));
   try {
