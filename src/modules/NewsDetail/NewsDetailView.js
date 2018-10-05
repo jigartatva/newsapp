@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, Text, StyleSheet } from 'react-native';
 import commonStyle from "../../shared/styles/commonStyle";
+import { COLORS } from '../../shared/constants/common';
 
 class NewsDetailView extends Component {
   static displayName = "News Detail";
@@ -12,8 +13,8 @@ class NewsDetailView extends Component {
   });
 
   constructor(props) {
-    super(props);   
-  }  
+    super(props);
+  }
 
   render() {
     const navigator = this.props.navigation;
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: COLORS.colorCreamWhite,
   }
 });
 

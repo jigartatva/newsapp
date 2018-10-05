@@ -19,7 +19,7 @@ import Spinner from '../Components/Spinner';
 import CrossIcon from '../Components/CrossIcon';
 import ModalBox from '../Components/ModalBox';
 //common functions
-import { ICONS } from '../../shared/constants/common'
+import { ICONS, COLORS } from '../../shared/constants/common'
 import * as CommonFunc from '../../shared/utils/commonFunc';
 
 const ITEMS_PER_PAGE = 10;
@@ -27,7 +27,7 @@ const ITEMS_PER_PAGE = 10;
 const { left_arrow_icon, filterIcon } = ICONS;
 
 class SearchView extends Component {
-
+  static displayName = "SearchView";
   constructor(props) {
     super(props);
     this.state = {
@@ -91,21 +91,21 @@ class SearchView extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{ flexDirection: 'row', height: 65, width: '100%', justifyContent: 'space-between', borderBottomColor: '#dedfe0', borderBottomWidth: 0.8, paddingBottom: 5, paddingTop: 5 }}>
-          <View style={{ width: '10%', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+        <View style={styles.innerContainer}>
+          <View style={styles.imageWrapper}>
             <TouchableOpacity
-              style={{ width: 28, height: 28, justifyContent: 'center', alignItems: 'center' }}
+              style={styles.imageTouch}
               onPress={() => this.props.navigation.goBack()}
             >
               <Image
-                style={[{ tintColor: '#000' }]}
+                style={[styles.imageTintColor]}
                 source={left_arrow_icon}
               />
             </TouchableOpacity>
           </View>
           <View style={styles.searchContainerStyle}>
             <View style={styles.rowStyle}>
-              <View style={{ width: '85%', height: '95%', justifyContent: 'center' }}>
+              <View style={styles.textInputWrapper}>
                 <TextInput
                   autoFocus={true}
                   style={[styles.textField]}
@@ -118,20 +118,20 @@ class SearchView extends Component {
                   onSubmitEditing={this.newsSearchBy}
                 />
               </View>
-              <View style={{ width: '10%', height: '95%', justifyContent: 'center', alignItems: 'center' }}>
+              <View style={styles.crossIconWrapper}>
                 {this.state.searchby.length > 0 && (
                   <CrossIcon onPress={() => { this.setState({ searchby: "" }) }} />
                 )}
               </View>
             </View>
           </View>
-          <View style={{ width: '15%', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+          <View style={styles.filterIconWrapper}>
             <TouchableOpacity
-              style={{ width: 28, height: 28, justifyContent: 'center', alignItems: 'center' }}
+              style={styles.imageTouch}
               onPress={() => { this.setState({ isModalPopupOpen: true }) }}
             >
               <Image
-                style={[{ tintColor: '#000', width: 28, height: 28 }]}
+                style={[styles.filterIconStyle]}
                 source={filterIcon}
               />
             </TouchableOpacity>
@@ -159,13 +159,10 @@ class SearchView extends Component {
           startOpen={false}
           isDisabled={false}
           headingText={'Alert'}
-          customDescStyle={{ paddingLeft: '7%', paddingRight: '7%' }}
-          textCustomDescStyle={{ fontSize: 14 }}
           numberOfButton={1}
           btnOkText={'Ok'}
           dataSource={this.props.newsSources ? JSON.parse(this.props.newsSources) : []}
           actionOk={() => { this.setState({ isModalPopupOpen: false }) }}
-          description={'fdgfhdkfbkjfgdyis fdb'}
           actionCancel={() => { this.setState({ isModalPopupOpen: false }) }}
           doSearch={(searchIdString) => { this.beginSearch(searchIdString) }}
         />
@@ -179,7 +176,54 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'flex-end',
-    backgroundColor: '#F5FCFF'
+    backgroundColor: COLORS.colorCreamWhite
+  },
+  innerContainer: {
+    flexDirection: 'row',
+    height: 65,
+    width: '100%',
+    justifyContent: 'space-between',
+    borderBottomColor: COLORS.colorLightGray,
+    borderBottomWidth: 0.8,
+    paddingBottom: 5,
+    paddingTop: 5
+  },
+  imageWrapper: {
+    width: '10%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%'
+  },
+  imageTouch: {
+    width: 28,
+    height: 28,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  imageTintColor: {
+    tintColor: COLORS.colorBlack
+  },
+  textInputWrapper: {
+    width: '85%',
+    height: '95%',
+    justifyContent: 'center'
+  },
+  crossIconWrapper: {
+    width: '10%',
+    height: '95%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  filterIconWrapper: {
+    width: '15%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%'
+  },
+  filterIconStyle: {
+    tintColor: COLORS.colorBlack,
+    width: 28,
+    height: 28
   },
   rowStyle: {
     flexDirection: 'row',
@@ -192,7 +236,7 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'flex-start',
     borderRadius: 10,
-    backgroundColor: "#dedfe0"
+    backgroundColor: COLORS.colorLightGray
   },
   gridStyle: {
     paddingTop: 20
@@ -203,16 +247,16 @@ const styles = StyleSheet.create({
     padding: 10,
     height: 180,
     alignItems: "stretch",
-    backgroundColor: 'gray'
+    backgroundColor: COLORS.colorGray
   },
   newsTitleStyle: {
     fontSize: 15,
-    color: '#fff',
+    color: COLORS.colorWhite,
     fontWeight: '600',
   },
   textField: {
     fontSize: 16,
-    color: '#4A4A4A'
+    color: COLORS.colorLightBlack
   },
   notFoundStyle: { fontSize: 15, padding: 10, alignSelf: 'center' }
 });

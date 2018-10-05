@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  TextInput,
   ImageBackground,
   TouchableOpacity,
   Image,
@@ -18,7 +17,7 @@ import * as NewsActions from '../../services/NewsService';
 import Spinner from '../Components/Spinner';
 import ModalBox from '../Components/ModalBox';
 //common functions
-import { ICONS } from '../../shared/constants/common'
+import { ICONS, COLORS } from '../../shared/constants/common'
 import * as CommonFunc from '../../shared/utils/commonFunc';
 
 const { filterIcon, seachIcon } = ICONS;
@@ -35,22 +34,22 @@ class NewsView extends Component {
     title: "Top Headlines",
     tabBarLabel: null,
     headerRight: (
-      <View style={{ flexDirection: 'row', height: '100%' }}>
+      <View style={styles.navigationWarpper}>
         <TouchableOpacity
-          style={{ width: 50, height: '100%', justifyContent: 'center', alignItems: 'center' }}
+          style={styles.navigationTouch}
           onPress={() => { navigation.navigation.push('Search') }}
         >
           <Image
-            style={{ width: 28, height: 28 }}
+            style={styles.imageStyle}
             source={seachIcon}
           />
         </TouchableOpacity>
         <TouchableOpacity
-          style={{ width: 50, height: '100%', justifyContent: 'center', alignItems: 'center' }}
+          style={styles.navigationTouch}
           onPress={() => navigation.navigation.state.params.handleModalPopupAction()}
         >
           <Image
-            style={{ width: 28, height: 28 }}
+            style={styles.imageStyle}
             source={filterIcon}
           />
         </TouchableOpacity>
@@ -154,13 +153,10 @@ class NewsView extends Component {
           startOpen={false}
           isDisabled={false}
           headingText={'Alert'}
-          customDescStyle={{ paddingLeft: '7%', paddingRight: '7%' }}
-          textCustomDescStyle={{ fontSize: 14 }}
           numberOfButton={1}
           btnOkText={'Ok'}
           dataSource={this.props.newsSources ? JSON.parse(this.props.newsSources) : []}
           actionOk={() => { this.setState({ isModalPopupOpen: false }) }}
-          description={'fdgfhdkfbkjfgdyis fdb'}
           actionCancel={() => { this.setState({ isModalPopupOpen: false }) }}
           doSearch={(searchIdString) => { this.beginSearch(searchIdString) }}
         />
@@ -174,18 +170,22 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: COLORS.colorCreamWhite,
     paddingBottom: 20
   },
-  rowStyle: {
-    flexDirection: 'row'
+  navigationWarpper: {
+    flexDirection: 'row',
+    height: '100%'
   },
-  searchContainerStyle: {
-    width: "100%",
-    padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "#333",
-    backgroundColor: "#1FB18A"
+  navigationTouch: {
+    width: 50,
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  imageStyle: {
+    width: 28,
+    height: 28
   },
   gridStyle: {
     paddingTop: 20
@@ -196,17 +196,12 @@ const styles = StyleSheet.create({
     padding: 10,
     height: 180,
     alignItems: "stretch",
-    backgroundColor: 'gray'
+    backgroundColor: COLORS.colorGray
   },
   newsTitleStyle: {
     fontSize: 15,
-    color: '#fff',
+    color: COLORS.colorWhite,
     fontWeight: '600',
-  },
-  textField: {
-    fontSize: 16,
-    color: '#4A4A4A',
-    width: "100%"
   },
   notFoundStyle: { fontSize: 15, padding: 10 }
 });
