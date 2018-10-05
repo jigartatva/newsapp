@@ -133,14 +133,14 @@ class NewsView extends Component {
     let title = item.title.substring(0, 50) + "...";
     let image = item.urlToImage;
     return (
-      <ImageBackground source={{ uri: image }} resizeMethod="resize" resizeMode="cover" style={[styles.itemContainer]}>
-        <TouchableOpacity
-          activeOpacity={1}
-          onPress={() => { this.props.navigation.navigate("NewsDetail", { "detail": item }) }}
-        >
+      <TouchableOpacity
+        activeOpacity={1}
+        onPress={() => { this.props.navigation.navigate("NewsDetail", { "detail": item }) }}
+      >
+        <ImageBackground source={{ uri: image }} resizeMethod="resize" resizeMode="cover" style={[styles.itemContainer]}>
           <Text style={styles.newsTitleStyle}>{title}</Text>
-        </TouchableOpacity>
-      </ImageBackground>
+        </ImageBackground>
+      </TouchableOpacity>
     );
   }
 
