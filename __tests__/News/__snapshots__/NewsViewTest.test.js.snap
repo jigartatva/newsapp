@@ -1,0 +1,1095 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NEWS VIEW  should render "NEWS VIEW" 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#F5FCFF",
+      "flex": 1,
+      "justifyContent": "flex-start",
+      "paddingBottom": 20,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "fontSize": 15,
+        "padding": 10,
+      }
+    }
+  >
+    News not available
+  </Text>
+  <Modal
+    animationType="fade"
+    hardwareAccelerated={false}
+    onRequestClose={[Function]}
+    transparent={true}
+    visible={false}
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "rgba(0, 0, 0, 0.5)",
+            "flex": 1,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignSelf": "center",
+              "backgroundColor": "#ffffff",
+              "borderRadius": 10,
+              "height": "90%",
+              "justifyContent": "space-between",
+              "marginTop": "10%",
+              "opacity": 1,
+              "padding": 5,
+              "width": "90%",
+              "zIndex": 9,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "flex-end",
+                "height": 50,
+                "justifyContent": "center",
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "height": "100%",
+                "justifyContent": "center",
+                "opacity": 1,
+                "width": 50,
+              }
+            }
+          >
+            <Image
+              source="test-file-stub"
+              style={
+                Array [
+                  Object {
+                    "height": 24,
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#ededed",
+                "height": "85%",
+                "margin": 5,
+              },
+            ]
+          }
+        >
+          <RCTScrollView
+            dataSource={
+              ListViewDataSource {
+                "items": 0,
+              }
+            }
+            renderRow={[Function]}
+            renderScrollComponent={[Function]}
+          >
+            <View />
+          </RCTScrollView>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "flex-end",
+                "height": 50,
+                "justifyContent": "center",
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#808080",
+                "height": "100%",
+                "justifyContent": "center",
+                "opacity": 1,
+                "width": "95%",
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#ffffff",
+                }
+              }
+            >
+              Search
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </Modal>
+</View>
+`;
+
+exports[`NEWS VIEW  should render "NEWS VIEW" with news data 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#F5FCFF",
+      "flex": 1,
+      "justifyContent": "flex-start",
+      "paddingBottom": 20,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "fontSize": 15,
+        "padding": 10,
+      }
+    }
+  >
+    News not available
+  </Text>
+  <Modal
+    animationType="fade"
+    hardwareAccelerated={false}
+    onRequestClose={[Function]}
+    transparent={true}
+    visible={false}
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "rgba(0, 0, 0, 0.5)",
+            "flex": 1,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignSelf": "center",
+              "backgroundColor": "#ffffff",
+              "borderRadius": 10,
+              "height": "90%",
+              "justifyContent": "space-between",
+              "marginTop": "10%",
+              "opacity": 1,
+              "padding": 5,
+              "width": "90%",
+              "zIndex": 9,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "flex-end",
+                "height": 50,
+                "justifyContent": "center",
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "height": "100%",
+                "justifyContent": "center",
+                "opacity": 1,
+                "width": 50,
+              }
+            }
+          >
+            <Image
+              source="test-file-stub"
+              style={
+                Array [
+                  Object {
+                    "height": 24,
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#ededed",
+                "height": "85%",
+                "margin": 5,
+              },
+            ]
+          }
+        >
+          <RCTScrollView
+            dataSource={
+              ListViewDataSource {
+                "items": 0,
+              }
+            }
+            renderRow={[Function]}
+            renderScrollComponent={[Function]}
+          >
+            <View />
+          </RCTScrollView>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "flex-end",
+                "height": 50,
+                "justifyContent": "center",
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#808080",
+                "height": "100%",
+                "justifyContent": "center",
+                "opacity": 1,
+                "width": "95%",
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#ffffff",
+                }
+              }
+            >
+              Search
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </Modal>
+</View>
+`;
+
+exports[`NEWS VIEW  should render "NEWS VIEW" with sources data 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#F5FCFF",
+      "flex": 1,
+      "justifyContent": "flex-start",
+      "paddingBottom": 20,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "fontSize": 15,
+        "padding": 10,
+      }
+    }
+  >
+    News not available
+  </Text>
+  <Modal
+    animationType="fade"
+    hardwareAccelerated={false}
+    onRequestClose={[Function]}
+    transparent={true}
+    visible={false}
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "rgba(0, 0, 0, 0.5)",
+            "flex": 1,
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignSelf": "center",
+              "backgroundColor": "#ffffff",
+              "borderRadius": 10,
+              "height": "90%",
+              "justifyContent": "space-between",
+              "marginTop": "10%",
+              "opacity": 1,
+              "padding": 5,
+              "width": "90%",
+              "zIndex": 9,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "flex-end",
+                "height": 50,
+                "justifyContent": "center",
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "height": "100%",
+                "justifyContent": "center",
+                "opacity": 1,
+                "width": 50,
+              }
+            }
+          >
+            <Image
+              source="test-file-stub"
+              style={
+                Array [
+                  Object {
+                    "height": 24,
+                    "width": 24,
+                  },
+                ]
+              }
+            />
+          </View>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#ededed",
+                "height": "85%",
+                "margin": 5,
+              },
+            ]
+          }
+        >
+          <RCTScrollView
+            dataSource={
+              ListViewDataSource {
+                "items": 7,
+              }
+            }
+            renderRow={[Function]}
+            renderScrollComponent={[Function]}
+          >
+            <View>
+              <View
+                pointerEvents="auto"
+                style={
+                  Array [
+                    Object {
+                      "flexDirection": "row",
+                      "height": 85,
+                      "padding": 10,
+                      "paddingLeft": 0.1,
+                      "paddingRight": 0.1,
+                      "width": "100%",
+                    },
+                    Object {},
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "height": "100%",
+                        "justifyContent": "center",
+                        "padding": 15,
+                        "paddingLeft": 1,
+                        "width": "80%",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "fontSize": 16,
+                          "fontWeight": "normal",
+                        },
+                      ]
+                    }
+                  >
+                     
+                    ABC News
+                     
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "flex-end",
+                        "height": "100%",
+                        "justifyContent": "center",
+                        "padding": 15,
+                        "width": "20%",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    accessible={true}
+                    isTVSelectable={true}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 40,
+                        "justifyContent": "center",
+                        "opacity": 1,
+                        "width": 40,
+                      }
+                    }
+                  >
+                    <Image
+                      source="test-file-stub"
+                    />
+                  </View>
+                </View>
+              </View>
+              <View
+                pointerEvents="auto"
+                style={
+                  Array [
+                    Object {
+                      "flexDirection": "row",
+                      "height": 85,
+                      "padding": 10,
+                      "paddingLeft": 0.1,
+                      "paddingRight": 0.1,
+                      "width": "100%",
+                    },
+                    Object {},
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "height": "100%",
+                        "justifyContent": "center",
+                        "padding": 15,
+                        "paddingLeft": 1,
+                        "width": "80%",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "fontSize": 16,
+                          "fontWeight": "normal",
+                        },
+                      ]
+                    }
+                  >
+                     
+                    ABC News (AU)
+                     
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "flex-end",
+                        "height": "100%",
+                        "justifyContent": "center",
+                        "padding": 15,
+                        "width": "20%",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    accessible={true}
+                    isTVSelectable={true}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 40,
+                        "justifyContent": "center",
+                        "opacity": 1,
+                        "width": 40,
+                      }
+                    }
+                  >
+                    <Image
+                      source="test-file-stub"
+                    />
+                  </View>
+                </View>
+              </View>
+              <View
+                pointerEvents="auto"
+                style={
+                  Array [
+                    Object {
+                      "flexDirection": "row",
+                      "height": 85,
+                      "padding": 10,
+                      "paddingLeft": 0.1,
+                      "paddingRight": 0.1,
+                      "width": "100%",
+                    },
+                    Object {},
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "height": "100%",
+                        "justifyContent": "center",
+                        "padding": 15,
+                        "paddingLeft": 1,
+                        "width": "80%",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "fontSize": 16,
+                          "fontWeight": "normal",
+                        },
+                      ]
+                    }
+                  >
+                     
+                    Aftenposten
+                     
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "flex-end",
+                        "height": "100%",
+                        "justifyContent": "center",
+                        "padding": 15,
+                        "width": "20%",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    accessible={true}
+                    isTVSelectable={true}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 40,
+                        "justifyContent": "center",
+                        "opacity": 1,
+                        "width": 40,
+                      }
+                    }
+                  >
+                    <Image
+                      source="test-file-stub"
+                    />
+                  </View>
+                </View>
+              </View>
+              <View
+                pointerEvents="auto"
+                style={
+                  Array [
+                    Object {
+                      "flexDirection": "row",
+                      "height": 85,
+                      "padding": 10,
+                      "paddingLeft": 0.1,
+                      "paddingRight": 0.1,
+                      "width": "100%",
+                    },
+                    Object {},
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "height": "100%",
+                        "justifyContent": "center",
+                        "padding": 15,
+                        "paddingLeft": 1,
+                        "width": "80%",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "fontSize": 16,
+                          "fontWeight": "normal",
+                        },
+                      ]
+                    }
+                  >
+                     
+                    Al Jazeera English
+                     
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "flex-end",
+                        "height": "100%",
+                        "justifyContent": "center",
+                        "padding": 15,
+                        "width": "20%",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    accessible={true}
+                    isTVSelectable={true}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 40,
+                        "justifyContent": "center",
+                        "opacity": 1,
+                        "width": 40,
+                      }
+                    }
+                  >
+                    <Image
+                      source="test-file-stub"
+                    />
+                  </View>
+                </View>
+              </View>
+              <View
+                pointerEvents="auto"
+                style={
+                  Array [
+                    Object {
+                      "flexDirection": "row",
+                      "height": 85,
+                      "padding": 10,
+                      "paddingLeft": 0.1,
+                      "paddingRight": 0.1,
+                      "width": "100%",
+                    },
+                    Object {},
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "height": "100%",
+                        "justifyContent": "center",
+                        "padding": 15,
+                        "paddingLeft": 1,
+                        "width": "80%",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "fontSize": 16,
+                          "fontWeight": "normal",
+                        },
+                      ]
+                    }
+                  >
+                     
+                    ANSA.it
+                     
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "flex-end",
+                        "height": "100%",
+                        "justifyContent": "center",
+                        "padding": 15,
+                        "width": "20%",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    accessible={true}
+                    isTVSelectable={true}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 40,
+                        "justifyContent": "center",
+                        "opacity": 1,
+                        "width": 40,
+                      }
+                    }
+                  >
+                    <Image
+                      source="test-file-stub"
+                    />
+                  </View>
+                </View>
+              </View>
+              <View
+                pointerEvents="auto"
+                style={
+                  Array [
+                    Object {
+                      "flexDirection": "row",
+                      "height": 85,
+                      "padding": 10,
+                      "paddingLeft": 0.1,
+                      "paddingRight": 0.1,
+                      "width": "100%",
+                    },
+                    Object {},
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "height": "100%",
+                        "justifyContent": "center",
+                        "padding": 15,
+                        "paddingLeft": 1,
+                        "width": "80%",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "fontSize": 16,
+                          "fontWeight": "normal",
+                        },
+                      ]
+                    }
+                  >
+                     
+                    Argaam
+                     
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "flex-end",
+                        "height": "100%",
+                        "justifyContent": "center",
+                        "padding": 15,
+                        "width": "20%",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    accessible={true}
+                    isTVSelectable={true}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 40,
+                        "justifyContent": "center",
+                        "opacity": 1,
+                        "width": 40,
+                      }
+                    }
+                  >
+                    <Image
+                      source="test-file-stub"
+                    />
+                  </View>
+                </View>
+              </View>
+              <View
+                pointerEvents="auto"
+                style={
+                  Array [
+                    Object {
+                      "flexDirection": "row",
+                      "height": 85,
+                      "padding": 10,
+                      "paddingLeft": 0.1,
+                      "paddingRight": 0.1,
+                      "width": "100%",
+                    },
+                    Object {},
+                  ]
+                }
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "height": "100%",
+                        "justifyContent": "center",
+                        "padding": 15,
+                        "paddingLeft": 1,
+                        "width": "80%",
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "fontSize": 16,
+                          "fontWeight": "normal",
+                        },
+                      ]
+                    }
+                  >
+                     
+                    Ars Technica
+                     
+                  </Text>
+                </View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "alignItems": "flex-end",
+                        "height": "100%",
+                        "justifyContent": "center",
+                        "padding": 15,
+                        "width": "20%",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    accessible={true}
+                    isTVSelectable={true}
+                    onResponderGrant={[Function]}
+                    onResponderMove={[Function]}
+                    onResponderRelease={[Function]}
+                    onResponderTerminate={[Function]}
+                    onResponderTerminationRequest={[Function]}
+                    onStartShouldSetResponder={[Function]}
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "height": 40,
+                        "justifyContent": "center",
+                        "opacity": 1,
+                        "width": 40,
+                      }
+                    }
+                  >
+                    <Image
+                      source="test-file-stub"
+                    />
+                  </View>
+                </View>
+              </View>
+            </View>
+          </RCTScrollView>
+        </View>
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "flex-end",
+                "height": 50,
+                "justifyContent": "center",
+                "width": "100%",
+              },
+            ]
+          }
+        >
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#808080",
+                "height": "100%",
+                "justifyContent": "center",
+                "opacity": 1,
+                "width": "95%",
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#ffffff",
+                }
+              }
+            >
+              Search
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </Modal>
+</View>
+`;
