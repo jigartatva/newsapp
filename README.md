@@ -18,14 +18,19 @@ $ react-native run-ios
 ```
 
 ## Screenshots 
-> Top_headlines
-![Alt text](https://github.com/jigartatva/newsapp/docs/1.Top_headlines.png?raw=true "Top Headlines")
 
-> Search
-![Alt text](https://github.com/jigartatva/newsapp/docs/2.search.png?raw=true "Search News")
+Top_headlines
 
-> Filter
-![Alt text](https://github.com/jigartatva/newsapp/docs/3.Filter.png?raw=true "Filter by Source")
+![Alt text](/docs/1.Top_headlines.png?raw=true "Top Headlines")
 
-> News Details
-![Alt text](https://github.com/jigartatva/newsapp/docs/4.NewsDetail.png?raw=true "Filter by Source")
+Search
+
+![Alt text](/docs/2.search.png?raw=true "Search News")
+
+Filter
+
+![Alt text](/docs/3.Filter.png?raw=true "Filter by Source")
+
+News Details
+
+![Alt text](/docs/4.NewsDetail.png?raw=true "Filter by Source")
