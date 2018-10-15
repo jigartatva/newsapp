@@ -1,15 +1,11 @@
 import { put, takeLatest, takeEvery } from 'redux-saga/effects';
 import * as Actions from '../actions/index';
 
-import * as apiEndpoints from '../services/apiConfig';
+import { API_ROOT, API_KEY } from '../services/apiConfig';
 
 import DeviceInfo from 'react-native-device-info';
 
 const deviceCountry = DeviceInfo.getDeviceCountry();
-
-//set API path
-const API_ROOT = apiEndpoints.api;
-const API_KEY = apiEndpoints.key;
 
 /**
   * Get news list watcher 
