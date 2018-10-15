@@ -5,7 +5,7 @@ import * as reduxLoop from 'redux-loop-symbol-ponyfill';
 import createSagaMiddleware from 'redux-saga';
 /* import combine reducers and sagas*/
 import reducer from './reducer';
-import rootSaga from './sagas';
+import rootSaga from '../sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -14,18 +14,18 @@ const sagaMiddleware = createSagaMiddleware();
   * @param store 
 */
 export default function configureStore() {
-    // define store middlewares as an array
-    const middlewares = [
-        thunk,
-        sagaMiddleware
-    ];
+  // define store middlewares as an array
+  const middlewares = [
+    thunk,
+    sagaMiddleware
+  ];
 
   const store = createStore(
     reducer,
     applyMiddleware(...middlewares),
     reduxLoop.install()
   )
-  
+
   sagaMiddleware.run(rootSaga);
   return store;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import NewsView from '../../src/modules/News/NewsView';
+import NewsView from '../../src/components/News';
 import { Provider } from 'react-redux';
 import DeviceInfo from 'react-native-device-info';
 import configureStore from '../../src/redux/store';

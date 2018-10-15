@@ -16,14 +16,16 @@ export const ICONS = {
  * Common color used in whole app
  */
 export const COLORS = {
-  colorWhite:'#ffffff',
-  colorBlack:'#000000',
-  colorLightGray:'#dedfe0',
-  colorGray:'#808080',
-  colorCreamWhite:'#F5FCFF',
-  colorLightBlack:'#4A4A4A',
-  colorTransparent:'transparent',
-  colorTransparentWhite:'rgba(0,0,0,0.8)',
-  colorMoreTransparentWhite:'rgba(0, 0, 0, 0.5)',
-  colorMoreCreamWhite:'#ededed'
+  colorWhite: '#ffffff',
+  colorBlack: '#000000',
+  colorLightGray: '#dedfe0',
+  colorGray: '#808080',
+  colorCreamWhite: '#F5FCFF',
+  colorLightBlack: '#4A4A4A',
+  colorTransparent: 'transparent',
+  colorTransparentWhite: 'rgba(0,0,0,0.8)',
+  colorMoreTransparentWhite: 'rgba(0, 0, 0, 0.5)',
+  colorMoreCreamWhite: '#ededed'
 }
+
+export const ITEMS_PER_PAGE = 10;

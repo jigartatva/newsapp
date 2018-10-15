@@ -1,7 +1,7 @@
 import { put, takeLatest, takeEvery } from 'redux-saga/effects';
-import * as AppActions from '../../services/AppService';
-import * as NewsActions from '../../services/NewsService';
-import * as apiEndpoints from '../../services/apiConfig';
+import * as Actions from '../actions/index';
+
+import * as apiEndpoints from '../services/apiConfig';
 
 import DeviceInfo from 'react-native-device-info';
 
@@ -15,21 +15,21 @@ const API_KEY = apiEndpoints.key;
   * Get news list watcher 
 */
 function* getNewsListWatcher() {
-  yield takeEvery(NewsActions.GET_NEWSLIST, getNewsListHandler);
+  yield takeLatest(Actions.GET_NEWSLIST, getNewsListHandler);
 }
 
 /**
   * Get news list by search watcher 
 */
 function* getNewsListBySearchWatcher() {
-  yield takeLatest(NewsActions.GET_NEWSLIST_SEARCH, getNewsListBySearchHandler);
+  yield takeLatest(Actions.GET_NEWSLIST_SEARCH, getNewsListBySearchHandler);
 }
 
 /**
   * Get news source watcher 
 */
 function* getNewsSourcesWatcher() {
-  yield takeEvery(NewsActions.GET_NEWS_SOURCES, getNewsSourcesHandler);
+  yield takeLatest(Actions.GET_NEWS_SOURCES, getNewsSourcesHandler);
 }
 
 /**
@@ -37,7 +37,7 @@ function* getNewsSourcesWatcher() {
   * @param value 
 */
 function* getNewsListHandler(value) {
-  yield put(AppActions.setLoader(true));
+  yield put(Actions.setLoader(true));
   var searchParamas = value.payload;
   try {
     const requestUrl =
@@ -47,14 +47,14 @@ function* getNewsListHandler(value) {
     let result = yield fetch(requestUrl)
       .then(response => response.json());
     if (result.status === "ok") {
-      yield put(NewsActions.getNewsListSuccess(result));
+      yield put(Actions.getNewsListSuccess(result));
     } else {
-      yield put(NewsActions.getNewsListFail(""));
+      yield put(Actions.getNewsListFail(""));
     }
   } catch (error) {
-    yield put(NewsActions.getNewsListFail(""));
+    yield put(Actions.getNewsListFail(""));
   }
-  yield put(AppActions.setLoader(false));
+  yield put(Actions.setLoader(false));
 }
 
 /**
@@ -62,7 +62,7 @@ function* getNewsListHandler(value) {
   * @param value 
 */
 function* getNewsListBySearchHandler(value) {
-  yield put(AppActions.setLoader(true));
+  yield put(Actions.setLoader(true));
   var searchParamas = value.payload;
   try {
     const requestUrl =
@@ -72,35 +72,35 @@ function* getNewsListBySearchHandler(value) {
     let result = yield fetch(requestUrl)
       .then(response => response.json());
     if (result.status === "ok") {
-      yield put(NewsActions.getNewsListSuccess(result));
+      yield put(Actions.getNewsListSuccess(result));
     } else {
-      yield put(NewsActions.getNewsListFail(""));
+      yield put(Actions.getNewsListFail(""));
     }
 
   } catch (error) {
-    yield put(NewsActions.getNewsListFail(""));
+    yield put(Actions.getNewsListFail(""));
   }
-  yield put(AppActions.setLoader(false));
+  yield put(Actions.setLoader(false));
 }
 
 /**
   * To get news source handler
 */
 function* getNewsSourcesHandler() {
-  yield put(AppActions.setLoader(true));
+  yield put(Actions.setLoader(true));
   try {
     const requestUrl = `${API_ROOT}/sources?apiKey=${API_KEY}`;
     let result = yield fetch(requestUrl)
       .then(response => response.json());
     if (result.status === "ok") {
-      yield put(NewsActions.getNewsSourcesSuccess(result.sources));
+      yield put(Actions.getNewsSourcesSuccess(result.sources));
     } else {
-      yield put(NewsActions.getNewsSourcesFailure(""));
+      yield put(Actions.getNewsSourcesFailure(""));
     }
   } catch (error) {
-    yield put(NewsActions.getNewsSourcesFailure(""));
+    yield put(Actions.getNewsSourcesFailure(""));
   }
-  yield put(AppActions.setLoader(false));
+  yield put(Actions.setLoader(false));
 }
 
 export default [

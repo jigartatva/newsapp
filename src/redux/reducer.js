@@ -1,12 +1,12 @@
 import { Map, fromJS } from 'immutable';
 import { loop, combineReducers } from 'redux-loop-symbol-ponyfill';
-import appReducer from '../services/AppService';
-import newsReducer from '../services/NewsService';
+import appReducer from './appReducer';
+import newsReducer from './newsReducer';
 const RESET_STATE = 'RESET_STATE';
 
 const reducers = {
-    appReducer: appReducer,
-    newsReducer: newsReducer
+  appReducer: appReducer,
+  newsReducer: newsReducer
 };
 
 // initial state, accessor and mutator for supporting root-level

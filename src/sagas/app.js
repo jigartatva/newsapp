@@ -1,5 +1,5 @@
 function* appSaga() {
-    console.log('Welcome to app Sagas!');    
+  console.log('Welcome to app Sagas!');
 }
 
 export default [appSaga];

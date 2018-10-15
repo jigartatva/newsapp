@@ -1,8 +1,5 @@
 import { Map } from 'immutable';
-const SET_LOADER = 'SET_LOADER';
-/* Set loader case*/
-export const setLoader = (value) => ({ type: SET_LOADER, payload: value });
-
+import * as Actions from '../actions/index';
 /**
   * Initial state 
 */
@@ -18,7 +15,7 @@ const initialState = Map({
 */
 export default function appReducer(state = initialState, action) {
   switch (action.type) {
-    case SET_LOADER:
+    case Actions.SET_LOADER:
       return state.set('loading', action.payload);
     default:
       return state;

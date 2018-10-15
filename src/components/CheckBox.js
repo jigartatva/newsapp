@@ -1,0 +1,168 @@
+import React, { Component } from 'react';
+import {
+  StyleSheet,
+  View,
+  ViewPropTypes,
+  Image,
+  Text,
+  TouchableHighlight
+} from 'react-native';
+import PropTypes from 'prop-types';
+
+import { ICONS } from '../shared/constants/common';
+
+const { indeterminate_check_box, ic_check_box, ic_check_box_outline_blank } = ICONS;
+
+/**
+ * Checkbox componet class
+ */
+export default class CheckBox extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  static propTypes = {
+    ...(ViewPropTypes || View.PropTypes),
+    leftText: PropTypes.string,
+    leftTextView: PropTypes.element,
+    rightText: PropTypes.string,
+    leftTextStyle: PropTypes.object,
+    rightTextView: PropTypes.element,
+    rightTextStyle: PropTypes.object,
+    checkedImage: PropTypes.element,
+    unCheckedImage: PropTypes.element,
+    onClick: PropTypes.func.isRequired,
+    isChecked: PropTypes.bool.isRequired,
+    isIndeterminate: PropTypes.bool.isRequired,
+    checkBoxColor: PropTypes.string,
+    checkedCheckBoxColor: PropTypes.string,
+    uncheckedCheckBoxColor: PropTypes.string,
+    disabled: PropTypes.bool,
+  }
+
+  /**
+    * Initialize default props 
+  */
+  static defaultProps = {
+    isChecked: false,
+    isIndeterminate: false,
+    leftTextStyle: {},
+    rightTextStyle: {}
+  }
+
+  onClick() {
+    this.props.onClick();
+  }
+
+  /**
+   * Render Left part 
+   * @return Text component
+  */
+  _renderLeft() {
+    if (this.props.leftTextView) return this.props.leftTextView;
+    if (!this.props.leftText) return null;
+    return (
+      <Text style={[styles.leftText, this.props.leftTextStyle]}>{this.props.leftText}</Text>
+    );
+  }
+
+  /**
+    * Render right part 
+    * @return Text component
+  */
+  _renderRight() {
+    if (this.props.rightTextView) return this.props.rightTextView;
+    if (!this.props.rightText) return null;
+    return (
+      <Text style={[styles.rightText, this.props.rightTextStyle]}>{this.props.rightText}</Text>
+    );
+  }
+
+  /**
+    * Render Image 
+    * @return image
+  */
+  _renderImage() {
+    if (this.props.isIndeterminate) {
+      return this.props.indeterminateImage ? this.props.indeterminateImage : this.genCheckedImage();
+    }
+    if (this.props.isChecked) {
+      return this.props.checkedImage ? this.props.checkedImage : this.genCheckedImage();
+    } else {
+      return this.props.unCheckedImage ? this.props.unCheckedImage : this.genCheckedImage();
+    }
+  }
+
+  /**
+    * Get checked checkbox color 
+    * @return checked checkbox color
+  */
+  _getCheckedCheckBoxColor() {
+    return this.props.checkedCheckBoxColor ? this.props.checkedCheckBoxColor : this.props.checkBoxColor
+  }
+
+  /**
+    * Get unchecked checkbox color 
+    * @return uncheckd checkbox color
+  */
+  _getUncheckedCheckBoxColor() {
+    return this.props.uncheckedCheckBoxColor ? this.props.uncheckedCheckBoxColor : this.props.checkBoxColor
+  }
+
+  /**
+    * Get tint color 
+    * @return checked checkbox color
+  */
+  _getTintColor() {
+    return this.props.isChecked ? this._getCheckedCheckBoxColor() : this._getUncheckedCheckBoxColor()
+  }
+
+  /**
+    * Generate checked image 
+    * @return Image component
+  */
+  genCheckedImage() {
+    let source;
+    if (this.props.isIndeterminate) {
+      source = indeterminate_check_box;
+    }
+    else {
+      source = this.props.isChecked ? ic_check_box : ic_check_box_outline_blank;
+    }
+
+    return (
+      <Image source={source} style={{ tintColor: this._getTintColor() }} />
+    );
+  }
+
+  render() {
+    return (
+      <TouchableHighlight
+        style={this.props.style}
+        onPress={() => this.onClick()}
+        underlayColor='transparent'
+        disabled={this.props.disabled}
+      >
+        <View style={styles.container}>
+          {this._renderLeft()}
+          {this._renderImage()}
+          {this._renderRight()}
+        </View>
+      </TouchableHighlight>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  leftText: {
+    flex: 1,
+  },
+  rightText: {
+    flex: 1,
+    marginLeft: 10
+  }
+});

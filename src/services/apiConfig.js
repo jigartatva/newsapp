@@ -12,4 +12,4 @@ const apiEnvironment = {
   }
 };
 
-module.exports = apiEnvironment[env];
+export default apiEnvironment[env];
