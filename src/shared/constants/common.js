@@ -28,4 +28,12 @@ export const COLORS = {
   colorMoreCreamWhite: '#ededed'
 }
 
+/**
+ * Number of items per page
+ */
 export const ITEMS_PER_PAGE = 10;
+
+/**
+ * Country Code
+ */
+export const COUNTRY_CODE = 'cn'
