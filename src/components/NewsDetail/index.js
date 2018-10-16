@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View, Image, Text, StyleSheet } from 'react-native';
 import commonStyle from "../../shared/styles/commonStyle";
