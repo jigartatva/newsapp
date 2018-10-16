@@ -31,6 +31,11 @@ class NewsView extends Component {
 
   static propTypes = {
     onPress: PropTypes.func,
+    dispatch: PropTypes.func,
+    navigation: PropTypes.any,
+    newsList: PropTypes.string,
+    loading: PropTypes.bool,
+    newsSources: PropTypes.any
   }
 
   /**
@@ -101,7 +106,7 @@ class NewsView extends Component {
     * DEFAULT : when component receive props 
     * @param nextProps 
   */
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.newsList && nextProps.newsList !== this.props.newsList && nextProps.newsList !== "" && nextProps.newsList !== 'undefined') {
       if (CommonFunc.isJson(nextProps.newsList)) {
         let newsArray = JSON.parse(nextProps.newsList);

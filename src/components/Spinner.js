@@ -68,7 +68,9 @@ export default class Spinner extends Component {
     animation: PropTypes.oneOf(ANIMATION),
     color: PropTypes.string,
     size: PropTypes.oneOf(SIZES),
-    overlayColor: PropTypes.string
+    overlayColor: PropTypes.string,
+    textStyle: PropTypes.object,
+    children: PropTypes.any
   };
 
   /**
@@ -96,7 +98,7 @@ export default class Spinner extends Component {
     * DEFAULT : component will recieve props 
     * @param nextProps 
   */
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { visible, textContent } = nextProps;
     this.setState({ visible, textContent });
   }

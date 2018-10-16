@@ -9,6 +9,11 @@ import { COLORS } from '../../shared/constants/common';
  */
 class NewsDetailView extends Component {
   static displayName = "News Detail";
+
+  static propTypes = {
+    navigation: PropTypes.any
+  }
+
   static navigationOptions = ({ navigation }) => ({
     title: "News Detail",
     headerStyle: commonStyle.navigationHeader,

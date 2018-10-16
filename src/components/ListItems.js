@@ -19,7 +19,9 @@ export default class ListItems extends Component {
     isAddedInPlayList: PropTypes.bool,
     isDisabled: PropTypes.bool,
     customContainerCSS: PropTypes.object,
-    isAccessible: PropTypes.bool
+    isAccessible: PropTypes.bool,
+    onCheck: PropTypes.func,
+    sources: PropTypes.object
   }
 
   /**
@@ -40,15 +42,15 @@ export default class ListItems extends Component {
   }
 
   render() {
-    const { titleText, name, isCheckeboxEnabled, isAccessible, isChecked, onCheck, customContainerCSS, isAddedInPlayList, isDisabled } = this.props;
+    const { sources, isCheckeboxEnabled, isAccessible, isChecked, onCheck, customContainerCSS, isAddedInPlayList, isDisabled } = this.props;
     return (
       <View style={[styles.container, customContainerCSS]} pointerEvents={'auto'} >
         <View style={[styles.categoryTextView]}>
-          {!!this.props.sources && <Text style={[styles.description]}> {this.props.sources.name} </Text>}
+          {!!sources && <Text style={[styles.description]}> {sources.name} </Text>}
         </View>
         <View style={[styles.soundCheckboxView]}>
           {!!isCheckeboxEnabled && <TouchableOpacity style={[styles.checkBoxTouch]}
-            onPress={() => { onCheck(this.props.sources) }}
+            onPress={() => { onCheck(sources) }}
           >
             <Image source={isChecked ? ic_check_box : ic_check_box_outline_blank} />
           </TouchableOpacity>}

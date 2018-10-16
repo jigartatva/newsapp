@@ -8,14 +8,6 @@ const store = configureStore();
 
 import renderer from 'react-test-renderer';
 
-jest.mock('react-native-device-info', () => {
-  return {
-    DeviceInfo: {
-      getDeviceCountry: jest.fn()
-    },
-  }
-})
-
 
 describe('NEWS VIEW ', () => {
   jest.mock('WebView');

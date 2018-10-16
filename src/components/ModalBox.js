@@ -29,7 +29,9 @@ export default class ModalBox extends Component {
     actionCancel: PropTypes.func,
     actionRequestClose: PropTypes.func,
     numberOfButton: PropTypes.number,
-    modalImage: PropTypes.string
+    modalImage: PropTypes.string,
+    dataSource: PropTypes.any,
+    doSearch: PropTypes.func
   };
 
   /**

@@ -5,7 +5,10 @@
     "node": true,
     "jest": true
   },
-  "extends": ["plugin:react-native/all"],
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:react-native/all"
+  ],
   "plugins": [
     "babel",
     "react",

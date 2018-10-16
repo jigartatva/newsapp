@@ -28,6 +28,16 @@ const { left_arrow_icon, filterIcon } = ICONS;
  * Search view componet class
  */
 class SearchView extends Component {
+  static displayName = "Search View";
+
+  static propTypes = {
+    dispatch: PropTypes.func,
+    navigation: PropTypes.any,
+    newsList: PropTypes.string,
+    loading: PropTypes.bool,
+    newsSources: PropTypes.any
+  }
+
 
   constructor(props) {
     super(props);
@@ -45,7 +55,7 @@ class SearchView extends Component {
     * DEFAULT : when component will receive props 
     * @param nextProps 
   */
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.newsList && nextProps.newsList !== this.props.newsList && nextProps.newsList !== "" && nextProps.newsList !== 'undefined') {
       if (CommonFunc.isJson(nextProps.newsList)) {
         let newsArray = JSON.parse(nextProps.newsList);
