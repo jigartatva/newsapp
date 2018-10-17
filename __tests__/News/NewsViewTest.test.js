@@ -3,6 +3,13 @@ import NewsView from '../../src/components/News';
 import { Provider } from 'react-redux';
 import DeviceInfo from 'react-native-device-info';
 import configureStore from '../../src/redux/store';
+import { shallow, configure } from 'enzyme';
+import { TouchableOpacity, ModalBox } from 'react-native';
+
+// fix Enzyme to work with React 16 as per https://github.com/airbnb/enzyme#installation
+import Adapter from 'enzyme-adapter-react-16'
+
+configure({ adapter: new Adapter() })
 
 const store = configureStore();
 
@@ -13,7 +20,8 @@ describe('NEWS VIEW ', () => {
   jest.mock('WebView');
   const props = {
     navigation: {
-      setParams: jest.fn()
+      setParams: jest.fn(),
+      navigate: jest.fn()
     },
     newsList: '',
   };
@@ -150,15 +158,29 @@ describe('NEWS VIEW ', () => {
 
   it('should render "NEWS VIEW" with news data', () => {
 
-    const tree = renderer.create(
-      <Provider store={store}>
-        <NewsView
-          {...props}
-          newsList={JSON.stringify(newsData)}
-          dispatch={jest.fn}
-        />
-      </Provider>).toJSON();
-    expect(tree).toMatchSnapshot();
+    const tree = shallow(
+      <NewsView
+        {...props}
+        newsList={''}
+        dispatch={jest.fn}
+        store={store}
+      />
+    );
+    const wrapper = tree.dive();
+    wrapper.setProps({ newsList: JSON.stringify(newsData) });
+    wrapper.update();
+    // tree.renderer._instance._instance.UNSAFE_componentWillReceiveProps(JSON.stringify(newsData) );
+    wrapper.setState({ isModalPopupOpen: true });
+    wrapper.update();
+    wrapper.instance().setState({ isModalPopupOpen: true });
+    wrapper.update();
+    wrapper.props().children[2].props.actionOk();
+    wrapper.props().children[2].props.actionCancel();
+    const GridView = wrapper.props().children[1].props;
+    GridView.renderItem(newsData.articles[0], 0);
+    wrapper.update();
+    GridView.renderItem(newsData.articles[0], 0).props.onPress();
+    wrapper.props().children[2].props.doSearch('abc-news, argaam');
   });
 
   it('should render "NEWS VIEW" with sources data', () => {

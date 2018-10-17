@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for components/ModalBox.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\prettify.css" />
+    <link rel="stylesheet" href="..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\index.html">All files</a> / <a href="index.html">components</a> ModalBox.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">73.08% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>38/52</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">25% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>1/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>5/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">61.11% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>22/36</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Component } from 'react';
+import {
+    Image,
+    View,
+    Text,
+    TouchableOpacity,
+    Modal,
+    ListView
+} from 'react-native';
+import PropTypes from 'prop-types';
+import ListItems from './ListItems';
+&nbsp;
+import { ICONS } from '../shared/constants/common';
+import commonStyle from '../shared/styles/commonStyle';
+&nbsp;
+const { cross_mark_icon_without_cover } = ICONS;
+&nbsp;
+/**
+ * ModalBox componet class
+ */
+export default class ModalBox extends Component {
+    static propTypes = {
+        isDisabled: PropTypes.bool,
+        isOpen: PropTypes.bool,
+        headingText: PropTypes.string,
+        btnOkText: PropTypes.string,
+        btnCancelText: PropTypes.string,
+        actionOk: PropTypes.func,
+        actionCancel: PropTypes.func,
+        actionRequestClose: PropTypes.func,
+        numberOfButton: PropTypes.number,
+        modalImage: PropTypes.string,
+        dataSource: PropTypes.any,
+        doSearch: PropTypes.func
+    };
+&nbsp;
+    /**
+      * Initialize default props 
+    */
+    static defaultProps = {
+        isDisabled: false,
+        isOpen: false,
+        startOpen: false,
+    };
+&nbsp;
+    constructor(props) {
+        super(props);
+        this.state = {
+            dimensions: '',
+            selectedIds: [],
+            searchIdString: ''
+        };
+        this.addFilterItem = this.addFilterItem.bind(this);
+    }
+&nbsp;
+    /**
+      * Get list items 
+      * @return clone with rows
+    */
+    getListItems() {
+        const ds = new ListView.DataSource({
+            rowHasChanged: (r1, <span class="fstat-no" title="function not covered" >r2) =&gt; r1 !== </span>r2<span class="cstat-no" title="statement not covered" ></span>
+        });
+        try {
+        <span class="missing-if-branch" title="else path not taken" >E</span>    if (this.props.dataSource) {
+                return (ds.cloneWithRows(this.props.dataSource));
+            } else {
+<span class="cstat-no" title="statement not covered" >                return (ds.cloneWithRow</span>s([]));
+            }
+        } catch (error) {
+<span class="cstat-no" title="statement not covered" >            return </span>ds;
+        }
+    }<span class="fstat-no" title="function not covered" ></span>
+&nbsp;
+    /**
+      * Add filter item 
+      * @param dataItem 
+    */
+    addFilterItem(dataItem) {
+<span class="cstat-no" title="statement not covered" >        if (this.state.selectedIds.includes(dataItem.id)) {</span>
+            var dat<span class="cstat-no" title="statement not covered" >a = this.state.selected</span>Ids;
+            var inde<span class="cstat-no" title="statement not covered" >x = data.indexOf(dataItem.</span>id);
+<span class="cstat-no" title="statement not covered" >            data.splice(index, </span>1);
+<span class="cstat-no" title="statement not covered" >            this.setState({ selectedIds: data, searchIdString: data.join(',') </span>})
+        } else {
+            var addDat<span class="cstat-no" title="statement not covered" >a = this.state.selected</span>Ids;
+<span class="cstat-no" title="statement not covered" >            addData.push(dataItem.i</span>d);
+<span class="cstat-no" title="statement not covered" >            this.setState({ selectedIds: addData, searchIdString: addData.join(',') </span>})
+        }
+    }
+&nbsp;
+    render() {
+        const { selectedIds } = this.state;
+        return (
+            &lt;Modal
+                animationType={'fade'}
+                transparent={true}
+                visible={this.props.isOpen}
+                onRequestClose={() <span class="fstat-no" title="function not covered" >=&gt; { console.lo</span>g('<span class="cstat-no" title="statement not covered" >') }}</span>
+            &gt;
+                &lt;View style={[commonStyle.modalContainer]}&gt;
+                    &lt;View style={[commonStyle.modal]}&gt;
+                        &lt;View style={[commonStyle.modelImageWrapper]}&gt;
+                            &lt;TouchableOpacity
+                                style={[commonStyle.crossImageTouch]}
+                                onPress={this.props.actionCancel}
+                            &gt;
+                                &lt;Image
+                                    style={[commonStyle.crossImage]}
+                                    source={cross_mark_icon_without_cover}
+                                /&gt;
+                            &lt;/TouchableOpacity&gt;
+                        &lt;/View&gt;
+                        &lt;View style={[commonStyle.listWrapper]}&gt;
+                            &lt;ListView
+                                dataSource={this.getListItems()}
+                                renderRow={(rowData, rowID) =&gt; {
+                                    return (
+                                        &lt;ListItems sources={rowData}
+                                            isChecked={selectedIds.includes(rowData.id)}
+<span class="fstat-no" title="function not covered" ></span>                                            onCheck={(dataItem) =&gt; {
+<span class="cstat-no" title="statement not covered" >                                                th</span>is.addFilterItem(dataItem)
+                                            }}&gt;&lt;/ListItems&gt;
+                                    )
+                                }}
+                            /&gt;
+                        &lt;/View&gt;
+                        &lt;View style={[commonStyle.imageWrapperButton]}&gt;
+                            &lt;TouchableOpacity
+                                style={[commonStyle.searchTouch]}
+<span class="fstat-no" title="function not covered" >                                onPr</span>ess={() =&gt; {
+<span class="cstat-no" title="statement not covered" >                                    this.props.doSearch(this.sta</span>te.searchIdString)
+                                }}
+                            &gt;
+                                &lt;Text style={commonStyle.searchText}&gt;Search&lt;/Text&gt;
+                            &lt;/TouchableOpacity&gt;
+                        &lt;/View&gt;
+                    &lt;/View&gt;
+                &lt;/View&gt;
+            &lt;/Modal&gt;
+        );
+    }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Oct 17 2018 19:03:15 GMT+0530 (India Standard Time)
+</div>
+</div>
+<script src="..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\sorter.js"></script>
+</body>
+</html>
