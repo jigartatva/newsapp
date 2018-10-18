@@ -1,5 +1,5 @@
 import React from 'react';
-import NewsView from '../../src/components/News';
+import SearchView from '../../src/components/Search';
 import { Provider } from 'react-redux';
 import DeviceInfo from 'react-native-device-info';
 import configureStore from '../../src/redux/store';
@@ -16,12 +16,13 @@ const store = configureStore();
 import renderer from 'react-test-renderer';
 
 
-describe('NEWS VIEW ', () => {
+describe('SEARCH VIEW ', () => {
   jest.mock('WebView');
   const props = {
     navigation: {
       setParams: jest.fn(),
-      navigate: jest.fn()
+      navigate: jest.fn(),
+      goBack: jest.fn()
     },
     newsList: '',
   };
@@ -148,16 +149,31 @@ describe('NEWS VIEW ', () => {
       "country": "us"
     }]
 
-  it('should render "NEWS VIEW"', () => {
+  it('should render "SEARCH VIEW"', () => {
     const tree = shallow(
-      <NewsView {...props} dispatch={jest.fn} store={store} />
+      <SearchView {...props} dispatch={jest.fn} store={store} />
     );
   });
 
-  it('should render "NEWS VIEW" with news data', () => {
+  it('should render "SEARCH VIEW" with no news list', () => {
+    const tree = shallow(
+      <SearchView {...props} dispatch={jest.fn} store={store} newsList={''} />
+    );
+    const wrapper = tree.dive();
+    wrapper.setProps({
+      newsList: JSON.stringify({
+        "status": "ok",
+        "totalResults": 0,
+        "articles": []
+      })
+    });
+    wrapper.update();
+  });
+
+  it('should render "SEARCH VIEW" with news data', () => {
 
     const tree = shallow(
-      <NewsView
+      <SearchView
         {...props}
         newsList={''}
         dispatch={jest.fn}
@@ -169,10 +185,70 @@ describe('NEWS VIEW ', () => {
     wrapper.update();
   });
 
-  it('should render "NEWS VIEW" with news data and opens modal popup', () => {
+  it('should render "SEARCH VIEW" with news data and doing search', () => {
 
     const tree = shallow(
-      <NewsView
+      <SearchView
+        {...props}
+        newsList={''}
+        dispatch={jest.fn}
+        store={store}
+      />
+    );
+    const wrapper = tree.dive();
+    wrapper.setProps({ newsList: JSON.stringify(newsData) });
+    wrapper.update();
+    wrapper.find('TextInput').forEach(child => {
+      child.simulate('ChangeText', 'ent')
+      child.props().onSubmitEditing();
+    });
+
+  });
+
+  it('should render "SEARCH VIEW" with news data and doing search and on cross icon click', () => {
+    const tree = shallow(
+      <SearchView
+        {...props}
+        newsList={''}
+        dispatch={jest.fn}
+        store={store}
+      />
+    );
+    const wrapper = tree.dive();
+    wrapper.setProps({ newsList: JSON.stringify(newsData) });
+    wrapper.update();
+    wrapper.find('TextInput').forEach(child => {
+      child.simulate('ChangeText', 'ent')
+    });
+    wrapper.find('CrossIcon').forEach(child => {
+      child.props().onPress();
+    });
+  });
+
+
+
+  it('should render "SEARCH VIEW" with news data and opens modal popup', () => {
+
+    const tree = shallow(
+      <SearchView
+        {...props}
+        newsList={''}
+        dispatch={jest.fn}
+        store={store}
+      />
+    );
+    const wrapper = tree.dive();
+    wrapper.setProps({ newsList: JSON.stringify(newsData) });
+    wrapper.update();
+    wrapper.find('TouchableOpacity').forEach(child => {
+      child.simulate('press')
+    });
+  });
+
+  it('should render "SEARCH VIEW" with news data opens modal and in ok click', () => {
+
+    const tree = shallow(
+      <SearchView
         {...props}
         newsList={''}
         dispatch={jest.fn}
@@ -184,12 +260,14 @@ describe('NEWS VIEW ', () => {
     wrapper.update();
     wrapper.instance().setState({ isModalPopupOpen: true });
     wrapper.update();
+    wrapper.props().children[3].props.actionOk();
   });
 
-  it('should render "NEWS VIEW" with news data opens modal and in ok click', () => {
+
+  it('should render "SEARCH VIEW" with news data opens modal and on cancel click', () => {
 
     const tree = shallow(
-      <NewsView
+      <SearchView
         {...props}
         newsList={''}
         dispatch={jest.fn}
@@ -201,14 +279,13 @@ describe('NEWS VIEW ', () => {
     wrapper.update();
     wrapper.instance().setState({ isModalPopupOpen: true });
     wrapper.update();
-    wrapper.props().children[2].props.actionOk();
+    wrapper.props().children[3].props.actionCancel();
   });
 
-
-  it('should render "NEWS VIEW" with news data opens modal and on cancel click', () => {
+  it('should render "SEARCH VIEW" with news data and renders news list item', () => {
 
     const tree = shallow(
-      <NewsView
+      <SearchView
         {...props}
         newsList={''}
         dispatch={jest.fn}
@@ -218,33 +295,15 @@ describe('NEWS VIEW ', () => {
     const wrapper = tree.dive();
     wrapper.setProps({ newsList: JSON.stringify(newsData) });
     wrapper.update();
-    wrapper.instance().setState({ isModalPopupOpen: true });
-    wrapper.update();
-    wrapper.props().children[2].props.actionCancel();
-  });
-
-  it('should render "NEWS VIEW" with news data and renders news list item', () => {
-
-    const tree = shallow(
-      <NewsView
-        {...props}
-        newsList={''}
-        dispatch={jest.fn}
-        store={store}
-      />
-    );
-    const wrapper = tree.dive();
-    wrapper.setProps({ newsList: JSON.stringify(newsData) });
-    wrapper.update();
-    const GridView = wrapper.props().children[1].props;
+    const GridView = wrapper.props().children[2].props;
     GridView.renderItem(newsData.articles[0], 0);
     wrapper.update();
   });
 
-  it('should render "NEWS VIEW" with news data and renders news list item, and on news item click to view news details', () => {
+  it('should render "SEARCH VIEW" with news data and renders news list item, and on news item click to view news details', () => {
 
     const tree = shallow(
-      <NewsView
+      <SearchView
         {...props}
         newsList={''}
         dispatch={jest.fn}
@@ -254,16 +313,16 @@ describe('NEWS VIEW ', () => {
     const wrapper = tree.dive();
     wrapper.setProps({ newsList: JSON.stringify(newsData) });
     wrapper.update();
-    const GridView = wrapper.props().children[1].props;
+    const GridView = wrapper.props().children[2].props;
     GridView.renderItem(newsData.articles[0], 0);
     wrapper.update();
-    GridView.renderItem(newsData.articles[0], 0).props.onPress();
+    GridView.renderItem(newsData.articles[0], 0).props.children.props.onPress();
   });
 
-  it('should render "NEWS VIEW" with news data, opens modal popup and on search click with category ids', () => {
+  it('should render "SEARCH VIEW" with news data, opens modal popup and on search click with category ids', () => {
 
     const tree = shallow(
-      <NewsView
+      <SearchView
         {...props}
         newsList={''}
         dispatch={jest.fn}
@@ -275,13 +334,13 @@ describe('NEWS VIEW ', () => {
     wrapper.update();
     wrapper.instance().setState({ isModalPopupOpen: true });
     wrapper.update();
-    wrapper.props().children[2].props.doSearch('abc-news, argaam');
+    wrapper.props().children[3].props.doSearch('abc-news, argaam');
   });
 
 
-  it('should render "NEWS VIEW" with sources data', () => {
+  it('should render "SEARCH VIEW" with sources data', () => {
     const tree = renderer.create(
-      <NewsView
+      <SearchView
         {...props}
         store={store}
         newsList={JSON.stringify(newsData)}
@@ -293,7 +352,7 @@ describe('NEWS VIEW ', () => {
 
   it('should select sources using checkbox', () => {
     const tree = shallow(
-      <NewsView
+      <SearchView
         {...props}
         newsList={''}
         newsSources={''}
@@ -310,7 +369,7 @@ describe('NEWS VIEW ', () => {
     wrapper.update();
     wrapper.setProps({ newsSources: JSON.stringify(sorceData) });
     wrapper.update();
-    const ListView = shallow(wrapper.props().children[2]).props().children.props.children.props.children[1].props.children;
+    const ListView = shallow(wrapper.props().children[3]).props().children.props.children.props.children[1].props.children;
     const ListViewRender = shallow(ListView).props().children;
     shallow(ListViewRender[2]).props().onCheck(sorceData[0]);
     shallow(ListViewRender[2]).props().onCheck(sorceData[1]);
@@ -320,7 +379,7 @@ describe('NEWS VIEW ', () => {
 
   it('should select sources using checkbox and click on search', () => {
     const tree = shallow(
-      <NewsView
+      <SearchView
         {...props}
         newsList={''}
         newsSources={''}
@@ -337,9 +396,9 @@ describe('NEWS VIEW ', () => {
     wrapper.update();
     wrapper.setProps({ newsSources: JSON.stringify(sorceData) });
     wrapper.update();
-    const ListView = shallow(wrapper.props().children[2]).props().children.props.children.props.children[2].props.children;
+    const ListView = shallow(wrapper.props().children[3]).props().children.props.children.props.children[2].props.children;
     ListView.props.onPress()
-    shallow(wrapper.props().children[2]).props().onRequestClose()
+    shallow(wrapper.props().children[3]).props().onRequestClose()
   });
 
 });
