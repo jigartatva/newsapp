@@ -38,3 +38,5 @@ News Details
 ## Code coverage
 
 ![Alt text](/docs/TestCaseCoverage.JPG?raw=true "Code Coverage")
+
+Note : As news detail screen is an additional screen, jest test cases for the same are not added.
