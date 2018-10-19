@@ -31,6 +31,7 @@ describe('NEWS DETAIL VIEW ', () => {
     const tree = shallow(
       <NewsDetailView {...props} dispatch={jest.fn} store={store} />
     );
+    expect(tree.containsMatchingElement(<legend>NewsDetailView</legend>));
   });
 
 

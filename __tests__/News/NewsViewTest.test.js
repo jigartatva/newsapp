@@ -152,6 +152,7 @@ describe('NEWS VIEW ', () => {
     const tree = shallow(
       <NewsView {...props} dispatch={jest.fn} store={store} />
     );
+    expect(tree.containsMatchingElement(<legend>NewsView</legend>));
   });
 
   it('should render "NEWS VIEW" with news data', () => {
@@ -167,6 +168,7 @@ describe('NEWS VIEW ', () => {
     const wrapper = tree.dive();
     wrapper.setProps({ newsList: JSON.stringify(newsData) });
     wrapper.update();
+    expect(wrapper.props().children[1].props.items.length).toEqual(4);
   });
 
   it('should render "NEWS VIEW" with news data and opens modal popup', () => {
@@ -184,6 +186,7 @@ describe('NEWS VIEW ', () => {
     wrapper.update();
     wrapper.instance().setState({ isModalPopupOpen: true });
     wrapper.update();
+    expect(wrapper.props().children[2].props.isOpen).toEqual(true);
   });
 
   it('should render "NEWS VIEW" with news data opens modal and in ok click', () => {
@@ -202,6 +205,7 @@ describe('NEWS VIEW ', () => {
     wrapper.instance().setState({ isModalPopupOpen: true });
     wrapper.update();
     wrapper.props().children[2].props.actionOk();
+    expect(wrapper.props().children[2].props.isOpen).toEqual(false);
   });
 
 
@@ -221,6 +225,7 @@ describe('NEWS VIEW ', () => {
     wrapper.instance().setState({ isModalPopupOpen: true });
     wrapper.update();
     wrapper.props().children[2].props.actionCancel();
+    expect(wrapper.props().children[2].props.isOpen).toEqual(false);
   });
 
   it('should render "NEWS VIEW" with news data and renders news list item', () => {
@@ -239,6 +244,8 @@ describe('NEWS VIEW ', () => {
     const GridView = wrapper.props().children[1].props;
     GridView.renderItem(newsData.articles[0], 0);
     wrapper.update();
+    expect(GridView.renderItem(newsData.articles[0], 0).props.children.props.children.props.children)
+      .toEqual(newsData.articles[0].title.substring(0, 50) + "...");
   });
 
   it('should render "NEWS VIEW" with news data and renders news list item, and on news item click to view news details', () => {
@@ -258,6 +265,7 @@ describe('NEWS VIEW ', () => {
     GridView.renderItem(newsData.articles[0], 0);
     wrapper.update();
     GridView.renderItem(newsData.articles[0], 0).props.onPress();
+    expect(GridView.renderItem(newsData.articles[0], 0).props.onPress()).toBeUndefined();
   });
 
   it('should render "NEWS VIEW" with news data, opens modal popup and on search click with category ids', () => {
@@ -276,11 +284,12 @@ describe('NEWS VIEW ', () => {
     wrapper.instance().setState({ isModalPopupOpen: true });
     wrapper.update();
     wrapper.props().children[2].props.doSearch('abc-news, argaam');
+    expect(wrapper.props().children[2].props.isOpen).toEqual(false);
   });
 
 
   it('should render "NEWS VIEW" with sources data', () => {
-    const tree = renderer.create(
+    const tree = shallow(
       <NewsView
         {...props}
         store={store}
@@ -289,6 +298,10 @@ describe('NEWS VIEW ', () => {
         dispatch={jest.fn}
       />
     );
+    const wrapper = tree.dive();
+    const ListView = shallow(wrapper.props().children[2]).props().children.props.children.props.children[1].props.children;
+    const ListViewRender = shallow(ListView).props().children;
+    expect(ListViewRender).toHaveLength(8);
   });
 
   it('should select sources using checkbox', () => {
@@ -302,7 +315,6 @@ describe('NEWS VIEW ', () => {
 
       />
     );
-
     const wrapper = tree.dive();
     wrapper.setProps({ newsList: JSON.stringify(newsData) });
     wrapper.update();
@@ -312,10 +324,25 @@ describe('NEWS VIEW ', () => {
     wrapper.update();
     const ListView = shallow(wrapper.props().children[2]).props().children.props.children.props.children[1].props.children;
     const ListViewRender = shallow(ListView).props().children;
+
     shallow(ListViewRender[2]).props().onCheck(sorceData[0]);
+    expect(shallow(ListViewRender[1]).props().isChecked).toEqual(true);
+
     shallow(ListViewRender[2]).props().onCheck(sorceData[1]);
+    expect(shallow(ListViewRender[2]).props().isChecked).toEqual(true);
+
     shallow(ListViewRender[2]).props().onCheck(sorceData[0]);
+    expect(shallow(ListViewRender[1]).props().isChecked).toEqual(false);
+
     shallow(ListViewRender[2]).props().onCheck(sorceData[0]);
+    expect(shallow(ListViewRender[1]).props().isChecked).toEqual(true);
+
+    shallow(shallow(shallow(ListViewRender[2]).dive().props().children[1]).props().children()).props().children.props.onPress();
+    expect(shallow(ListViewRender[2]).props().isChecked).toEqual(false);
+
+    shallow(shallow(shallow(ListViewRender[2]).dive().props().children[1]).props().children()).props().children.props.onPress();
+    expect(shallow(ListViewRender[2]).props().isChecked).toEqual(true);
+
   });
 
   it('should select sources using checkbox and click on search', () => {
@@ -339,7 +366,8 @@ describe('NEWS VIEW ', () => {
     wrapper.update();
     const ListView = shallow(wrapper.props().children[2]).props().children.props.children.props.children[2].props.children;
     ListView.props.onPress()
-    shallow(wrapper.props().children[2]).props().onRequestClose()
+    shallow(wrapper.props().children[2]).props().onRequestClose();
+    expect(wrapper.props().children[2].props.isOpen).toEqual(false);
   });
 
 });

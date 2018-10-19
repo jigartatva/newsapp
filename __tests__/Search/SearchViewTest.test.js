@@ -153,6 +153,7 @@ describe('SEARCH VIEW ', () => {
     const tree = shallow(
       <SearchView {...props} dispatch={jest.fn} store={store} />
     );
+    expect(tree.containsMatchingElement(<legend>SearchView</legend>));
   });
 
   it('should render "SEARCH VIEW" with no news list', () => {
@@ -168,6 +169,7 @@ describe('SEARCH VIEW ', () => {
       })
     });
     wrapper.update();
+    expect(wrapper.props().children[2].props.children).toEqual('News not found for the selected criteria');
   });
 
   it('should render "SEARCH VIEW" with news data', () => {
@@ -183,6 +185,7 @@ describe('SEARCH VIEW ', () => {
     const wrapper = tree.dive();
     wrapper.setProps({ newsList: JSON.stringify(newsData) });
     wrapper.update();
+    expect(wrapper.props().children[2].props.items.length).toEqual(4);
   });
 
   it('should render "SEARCH VIEW" with news data and doing search', () => {
@@ -199,10 +202,13 @@ describe('SEARCH VIEW ', () => {
     wrapper.setProps({ newsList: JSON.stringify(newsData) });
     wrapper.update();
     wrapper.find('TextInput').forEach(child => {
-      child.simulate('ChangeText', 'ent')
+      expect(child.props().value).toEqual('');
+      child.simulate('ChangeText', 'Bodies of mother')
       child.props().onSubmitEditing();
     });
-
+    wrapper.find('TextInput').forEach(child => {
+      expect(child.props().value).toEqual('Bodies of mother');
+    });
   });
 
   it('should render "SEARCH VIEW" with news data and doing search and on cross icon click', () => {
@@ -218,10 +224,17 @@ describe('SEARCH VIEW ', () => {
     wrapper.setProps({ newsList: JSON.stringify(newsData) });
     wrapper.update();
     wrapper.find('TextInput').forEach(child => {
+      expect(child.props().value).toEqual('');
       child.simulate('ChangeText', 'ent')
+    });
+    wrapper.find('TextInput').forEach(child => {
+      expect(child.props().value).toEqual('ent');
     });
     wrapper.find('CrossIcon').forEach(child => {
       child.props().onPress();
+    });
+    wrapper.find('TextInput').forEach(child => {
+      expect(child.props().value).toEqual('');
     });
   });
 
@@ -243,6 +256,7 @@ describe('SEARCH VIEW ', () => {
     wrapper.find('TouchableOpacity').forEach(child => {
       child.simulate('press')
     });
+    expect(wrapper.props().children[3].props.isOpen).toEqual(true);
   });
 
   it('should render "SEARCH VIEW" with news data opens modal and in ok click', () => {
@@ -261,6 +275,7 @@ describe('SEARCH VIEW ', () => {
     wrapper.instance().setState({ isModalPopupOpen: true });
     wrapper.update();
     wrapper.props().children[3].props.actionOk();
+    expect(wrapper.props().children[3].props.isOpen).toEqual(false);
   });
 
 
@@ -280,6 +295,7 @@ describe('SEARCH VIEW ', () => {
     wrapper.instance().setState({ isModalPopupOpen: true });
     wrapper.update();
     wrapper.props().children[3].props.actionCancel();
+    expect(wrapper.props().children[3].props.isOpen).toEqual(false);
   });
 
   it('should render "SEARCH VIEW" with news data and renders news list item', () => {
@@ -298,6 +314,8 @@ describe('SEARCH VIEW ', () => {
     const GridView = wrapper.props().children[2].props;
     GridView.renderItem(newsData.articles[0], 0);
     wrapper.update();
+    expect(GridView.renderItem(newsData.articles[0], 0).props.children.props.children.props.children)
+    .toEqual(newsData.articles[0].title.substring(0, 50) + "...");
   });
 
   it('should render "SEARCH VIEW" with news data and renders news list item, and on news item click to view news details', () => {
@@ -317,6 +335,7 @@ describe('SEARCH VIEW ', () => {
     GridView.renderItem(newsData.articles[0], 0);
     wrapper.update();
     GridView.renderItem(newsData.articles[0], 0).props.children.props.onPress();
+    expect(GridView.renderItem(newsData.articles[0], 0).props.children.props.onPress()).toBeUndefined()
   });
 
   it('should render "SEARCH VIEW" with news data, opens modal popup and on search click with category ids', () => {
@@ -335,11 +354,12 @@ describe('SEARCH VIEW ', () => {
     wrapper.instance().setState({ isModalPopupOpen: true });
     wrapper.update();
     wrapper.props().children[3].props.doSearch('abc-news, argaam');
+    expect(wrapper.props().children[3].props.isOpen).toEqual(false);
   });
 
 
   it('should render "SEARCH VIEW" with sources data', () => {
-    const tree = renderer.create(
+    const searchTree = renderer.create(
       <SearchView
         {...props}
         store={store}
@@ -348,6 +368,19 @@ describe('SEARCH VIEW ', () => {
         dispatch={jest.fn}
       />
     );
+    const tree = shallow(
+      <SearchView
+        {...props}
+        store={store}
+        newsList={JSON.stringify(newsData)}
+        newsSources={JSON.stringify(sorceData)}
+        dispatch={jest.fn}
+      />
+    );
+    const wrapper = tree.dive();
+    const ListView = shallow(wrapper.props().children[3]).props().children.props.children.props.children[1].props.children;
+    const ListViewRender = shallow(ListView).props().children;
+    expect(ListViewRender).toHaveLength(8);
   });
 
   it('should select sources using checkbox', () => {
@@ -372,9 +405,16 @@ describe('SEARCH VIEW ', () => {
     const ListView = shallow(wrapper.props().children[3]).props().children.props.children.props.children[1].props.children;
     const ListViewRender = shallow(ListView).props().children;
     shallow(ListViewRender[2]).props().onCheck(sorceData[0]);
+    expect(shallow(ListViewRender[1]).props().isChecked).toEqual(true);
+
     shallow(ListViewRender[2]).props().onCheck(sorceData[1]);
+    expect(shallow(ListViewRender[2]).props().isChecked).toEqual(true);
+
     shallow(ListViewRender[2]).props().onCheck(sorceData[0]);
+    expect(shallow(ListViewRender[1]).props().isChecked).toEqual(false);
+
     shallow(ListViewRender[2]).props().onCheck(sorceData[0]);
+    expect(shallow(ListViewRender[1]).props().isChecked).toEqual(true);
   });
 
   it('should select sources using checkbox and click on search', () => {
@@ -398,7 +438,8 @@ describe('SEARCH VIEW ', () => {
     wrapper.update();
     const ListView = shallow(wrapper.props().children[3]).props().children.props.children.props.children[2].props.children;
     ListView.props.onPress()
-    shallow(wrapper.props().children[3]).props().onRequestClose()
+    shallow(wrapper.props().children[3]).props().onRequestClose();
+    expect(wrapper.props().children[3].props.isOpen).toEqual(false);
   });
 
 });
